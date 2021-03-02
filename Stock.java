@@ -47,8 +47,15 @@ public class Stock {
                 keyValue2[keyValue.length] = "";
                 keyValue = keyValue2;
             }
-            myMap.put(keyValue[0], keyValue[1]);
+            myMap.put(keyValue[0].replace("\"", ""), keyValue[1].replace("\"", ""));
         }
         return myMap;
+    }
+    public static void main(String[] args) {
+        Stock amazon = new Stock("amzn");
+        ArrayList<HashMap<String, String>> list = new ArrayList();
+        list = amazon.getStockStats();
+        String marketPrice = list.get(0).get("governance_grade");
+        System.out.println(marketPrice);
     }
 }
